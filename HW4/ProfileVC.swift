@@ -19,10 +19,10 @@ class ProfileVC: UIViewController {
     }(UIImageView(frame: CGRect(x: 30, y: logo.frame.maxY + 20, width: view.frame.width - 60, height: 392)))
     
     lazy var socialMediaArray : [UIButton] = [
-        AppUI.createMediaButton(withImage: .instagram, action: " Instagram", bgColor: .black, cornerRadius: 17),
-        AppUI.createMediaButton(withImage: .tikTok, action: "Tik-Tok", bgColor: .black, cornerRadius: 17),
-        AppUI.createMediaButton(withImage: .vk, action: "VK", bgColor: .black, cornerRadius: 17),
-        AppUI.createMediaButton(withImage: .tg, action: "Telegram", bgColor: .black, cornerRadius: 17)
+        AppUI.createMediaButton(withImage: .instagram, action: " Instagram"),
+        AppUI.createMediaButton(withImage: .tikTok, action: "Tik-Tok"),
+        AppUI.createMediaButton(withImage: .vk, action: "VK"),
+        AppUI.createMediaButton(withImage: .tg, action: "Telegram")
     ]
     
     lazy var socialMediaStack : UIStackView = {
@@ -102,14 +102,12 @@ class ProfileVC: UIViewController {
         withImage: .close,
         action: "Discard profile",
         size: CGRect(x: 30, y: avatar.frame.maxY + 28, width: 65, height: 65),
-        bgColor: .appWhite,
         tintColor: .black)
     
     lazy var acceptButton : UIButton = AppUI.createManageButton(
         withImage: .heart,
         action: "Like profile",
         size: CGRect(x: messageButton.frame.maxX + 17, y: avatar.frame.maxY + 28, width: 65, height: 65),
-        bgColor: .appWhite,
         tintColor: .red)
         
     lazy var messageButton : UIButton = {
