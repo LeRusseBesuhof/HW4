@@ -7,7 +7,7 @@ class ProfileVC: UIViewController {
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
         return $0
-    }(UIImageView(image: .dieVinchikLogo))
+    }(UIImageView(image: .logo))
         
     lazy var avatar : UIImageView = {
         $0.layer.cornerRadius = 40
@@ -18,13 +18,12 @@ class ProfileVC: UIViewController {
         return $0
     }(UIImageView(frame: CGRect(x: 30, y: logo.frame.maxY + 20, width: view.frame.width - 60, height: 392)))
     
-    lazy var instBtn : UIButton = AppUI.createMediaButton(withImage: .instagram, action: " Instagram", bgColor: .black, cornerRadius: 17)
-    
-    lazy var tTBtn : UIButton = AppUI.createMediaButton(withImage: .tikTok, action: "Tik-Tok", bgColor: .black, cornerRadius: 17)
-    
-    lazy var vKBtn : UIButton = AppUI.createMediaButton(withImage: .vk, action: "VK", bgColor: .black, cornerRadius: 17)
-    
-    lazy var tGBtn : UIButton = AppUI.createMediaButton(withImage: .tg, action: "Telegram", bgColor: .black, cornerRadius: 17)
+    lazy var socialMediaArray : [UIButton] = [
+        AppUI.createMediaButton(withImage: .instagram, action: " Instagram", bgColor: .black, cornerRadius: 17),
+        AppUI.createMediaButton(withImage: .tikTok, action: "Tik-Tok", bgColor: .black, cornerRadius: 17),
+        AppUI.createMediaButton(withImage: .vk, action: "VK", bgColor: .black, cornerRadius: 17),
+        AppUI.createMediaButton(withImage: .tg, action: "Telegram", bgColor: .black, cornerRadius: 17)
+    ]
     
     lazy var socialMediaStack : UIStackView = {
         $0.frame.origin = CGPoint(x: 31, y: 28)
@@ -36,10 +35,7 @@ class ProfileVC: UIViewController {
         $0.spacing = 12
         $0.distribution = .fillEqually
         
-        let stackArray = [instBtn, tTBtn, vKBtn, tGBtn]
-        for el in stackArray {
-            $0.addArrangedSubview(el)
-        }
+        for el in socialMediaArray { $0.addArrangedSubview(el) }
         return $0
     }(UIStackView())
     
@@ -108,6 +104,13 @@ class ProfileVC: UIViewController {
         size: CGRect(x: 30, y: avatar.frame.maxY + 28, width: 65, height: 65),
         bgColor: .appWhite,
         tintColor: .black)
+    
+    lazy var acceptButton : UIButton = AppUI.createManageButton(
+        withImage: .heart,
+        action: "Like profile",
+        size: CGRect(x: messageButton.frame.maxX + 17, y: avatar.frame.maxY + 28, width: 65, height: 65),
+        bgColor: .appWhite,
+        tintColor: .red)
         
     lazy var messageButton : UIButton = {
         $0.frame.origin = CGPoint(x: discardButton.frame.maxX + 16, y: avatar.frame.maxY + 36)
@@ -121,13 +124,6 @@ class ProfileVC: UIViewController {
     }(UIButton(primaryAction: UIAction(handler: {_ in 
         print("Write some message")
     })))
-    
-    lazy var acceptButton : UIButton = AppUI.createManageButton(
-        withImage: .heart,
-        action: "Like profile",
-        size: CGRect(x: messageButton.frame.maxX + 17, y: avatar.frame.maxY + 28, width: 65, height: 65),
-        bgColor: .appWhite,
-        tintColor: .red)
 
     override func viewDidLoad() {
         
