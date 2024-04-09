@@ -24,11 +24,11 @@ class ProfileVC: UIViewController {
         AppUI.createMediaButton(withImage: .vk, action: "VK"),
         AppUI.createMediaButton(withImage: .tg, action: "Telegram")
     ]
+    lazy var sMButtonsCount = socialMediaArray.count
     
     lazy var socialMediaStack : UIStackView = {
         $0.frame.origin = CGPoint(x: 31, y: 28)
-        $0.frame.size = CGSize(width: avatar.frame.width - 206, height: 34)
-        $0.layer.cornerRadius = 30
+        $0.frame.size = CGSize(width: sMButtonsCount * 46 - 12, height: 34)
         
         $0.axis = .horizontal
         $0.alignment = .fill
@@ -47,7 +47,7 @@ class ProfileVC: UIViewController {
     }
     
     lazy var moreInfo : UIButton = {
-        $0.frame.origin = CGPoint(x: socialMediaStack.frame.maxX + 89, y: 21)
+        $0.frame.origin = CGPoint(x: avatar.frame.maxX - 100, y: 21)
         $0.frame.size = CGSize(width: 49, height: 49)
         $0.tintColor = .white
         return $0
@@ -56,7 +56,7 @@ class ProfileVC: UIViewController {
     })))
     
     lazy var nameSurnameLabel : UILabel = {
-        $0.text = "Alexandra Gradova"
+        $0.text = "Alexandra Gradovaa"
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(900))
         
@@ -70,8 +70,9 @@ class ProfileVC: UIViewController {
     lazy var isPageVerifiedIcon : UIImageView = { return $0 }(UIImageView(image: .quality))
     
     // смог сделать стек с изменяющейся в зависимости от длины лейбла шириной
+    lazy var nameAndStatusStackWidth = nameSurnameLabel.frame.width + 29 > avatar.frame.width - 60 ? avatar.frame.width - 60 : nameSurnameLabel.frame.width + 29
     lazy var nameAndStatusStack : UIStackView = {
-        $0.frame.size = CGSize(width: nameSurnameLabel.frame.width + 29, height: 29)
+        $0.frame.size = CGSize(width: nameAndStatusStackWidth, height: 29)
         
         $0.axis = .horizontal
         $0.alignment = .center
@@ -87,8 +88,7 @@ class ProfileVC: UIViewController {
     }(UILabel())
     
     lazy var userDataStack : UIStackView = {
-        // почему нельзя инициализировать высоту стека так: avatar.frame.maxY - 51?
-        $0.frame.origin = CGPoint(x: 31, y: socialMediaStack.frame.maxY + 236)
+        $0.frame.origin = CGPoint(x: 31, y: avatar.frame.maxY - 250)
         $0.frame.size = CGSize(width: nameAndStatusStack.frame.width, height: 48)
         
         $0.axis = .vertical
