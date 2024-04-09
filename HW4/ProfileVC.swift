@@ -47,7 +47,7 @@ class ProfileVC: UIViewController {
     }
     
     lazy var moreInfo : UIButton = {
-        $0.frame.origin = CGPoint(x: avatar.frame.maxX - 100, y: 21)
+        $0.frame.origin = CGPoint(x: avatar.frame.width - 70, y: 21)
         $0.frame.size = CGSize(width: 49, height: 49)
         $0.tintColor = .white
         return $0
@@ -56,7 +56,7 @@ class ProfileVC: UIViewController {
     })))
     
     lazy var nameSurnameLabel : UILabel = {
-        $0.text = "Alexandra Gradovaa"
+        $0.text = "Alexandra Gradova"
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(900))
         
@@ -88,7 +88,7 @@ class ProfileVC: UIViewController {
     }(UILabel())
     
     lazy var userDataStack : UIStackView = {
-        $0.frame.origin = CGPoint(x: 31, y: avatar.frame.maxY - 250)
+        $0.frame.origin = CGPoint(x: 31, y: avatar.frame.height - 94)
         $0.frame.size = CGSize(width: nameAndStatusStack.frame.width, height: 48)
         
         $0.axis = .vertical
